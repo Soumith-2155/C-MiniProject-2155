@@ -3,10 +3,11 @@
 #define MAX_SUBJECTS 5
 #define MAX_QUIZZES 5
 #define MAX_ASSIGNMENTS 5
+#define MAX_ID_LENGTH 20 // Adjusted length for alphanumeric ID
 
 typedef struct {
     char name[50];
-    int id;
+    char id[MAX_ID_LENGTH]; // Alphanumeric ID
     char branch[50];
     int semester;
     float scores[MAX_QUIZZES + MAX_ASSIGNMENTS + 1]; // Last index for midterm
@@ -16,9 +17,9 @@ void inputStudentDetails(Student *student) {
     printf("Enter Student Name: ");
     scanf(" %[^\n]", student->name);
     
-    printf("Enter Student ID: ");
-    scanf("%d", &student->id);
-    
+    printf("Enter Student ID (alphanumeric): ");
+    scanf(" %[^\n]", student->id); // Read alphanumeric ID
+
     printf("Enter Branch: ");
     scanf(" %[^\n]", student->branch);
     
@@ -56,9 +57,18 @@ void calculateGrade(Student *student) {
         total += student->scores[quizzes + i];
     }
 
+    float midTermMarks;
     printf("Enter Mid-term Marks (out of 30): ");
-    scanf("%f", &student->scores[quizzes + assignments]);
-    total += student->scores[quizzes + assignments];
+    scanf("%f", &midTermMarks);
+    
+    // Validate mid-term marks
+    if (midTermMarks < 0 || midTermMarks > 30) {
+        printf("Error: Mid-term marks must be between 0 and 30.\n");
+        return;
+    }
+
+    student->scores[quizzes + assignments] = midTermMarks;
+    total += midTermMarks;
 
     float percentage = (total / 70) * 100; // Total of quizzes, assignments, and mid-term
 
@@ -77,7 +87,7 @@ void calculateGrade(Student *student) {
 void displayResult(Student student) {
     printf("\nStudent Details:\n");
     printf("Name: %s\n", student.name);
-    printf("ID: %d\n", student.id);
+    printf("ID: %s\n", student.id); // Displaying alphanumeric ID
     printf("Branch: %s\n", student.branch);
     printf("Semester: %d\n", student.semester);
 }
