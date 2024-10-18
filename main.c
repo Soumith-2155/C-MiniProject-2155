@@ -38,7 +38,7 @@ void calculateGrade(Student *student) {
     }
 
     for (int i = 0; i < quizzes; i++) {
-        printf("Enter scores for Quiz %d: ", i + 1);
+        printf("Enter scores for Quiz %d (up to 5.00): ", i + 1);
         scanf("%f", &student->scores[i]);
         total += student->scores[i];
     }
@@ -51,7 +51,7 @@ void calculateGrade(Student *student) {
     }
 
     for (int i = 0; i < assignments; i++) {
-        printf("Enter scores for Assignment %d: ", i + 1);
+        printf("Enter scores for Assignment %d (up to 5.00): ", i + 1);
         scanf("%f", &student->scores[quizzes + i]);
         total += student->scores[quizzes + i];
     }
