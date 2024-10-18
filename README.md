@@ -26,23 +26,23 @@ Create a console application that allows users to:
 1. **Test Case 1: Valid Inputs**
    ![Test Case 1](Images/Test_1_Valid_Input.png)
 
-2. **Test Case 2: Invalid Mid-term Marks**
-   ![Test Case 2](images/test_case_2.png)
+2. **Test Case 2: Quiz Limit Exceeded**
+   ![Test Case 2](Images/Test_2_Exceed_Quiz_Limit.png)
 
-3. **Test Case 3: Grade Calculation**
-   ![Test Case 3](images/test_case_3.png)
+3. **Test Case 3: Assignment Limit Exceeded**
+   ![Test Case 3](Images/Test_3_Exceed_Assignment_Limit.png)
    
-4. **Test Case 1: Valid Inputs**
-   ![Test Case 1](images/test_case_1.png)
+4. **Test Case 4: All Zero Inputs**
+   ![Test Case 1](Images/Test_4_All_Zero_Inputs.png)
 
-5. **Test Case 2: Invalid Mid-term Marks**
-   ![Test Case 2](images/test_case_2.png)
+5. **Test Case 5: Perfect Score Input**
+   ![Test Case 2](Images/Test_5_Perfect_Scores.png)
 
-6. **Test Case 3: Grade Calculation**
-   ![Test Case 3](images/test_case_3.png)
+6. **Test Case 6: Edge Grade Calculation**
+   ![Test Case 3](Images/Test_6_Edge_Grade.png)
 
-7. **Test Case 3: Grade Calculation**
-   ![Test Case 3](images/test_case_3.png)
+7. **Test Case 7: Mid Marks Limit Exceeded**
+   ![Test Case 3](Images/Test_7_Mid_Marks_Exceed_Limit.png)
 
 
 ## Conclusion
