@@ -1,25 +1,28 @@
 #include <stdio.h>
 
 #define MAX_SUBJECTS 5
-#define QUIZZES 5
-#define ASSIGNMENTS 5
+#define MAX_QUIZZES 5
+#define MAX_ASSIGNMENTS 5
 
 typedef struct {
     char name[50];
     int id;
     char branch[50];
     int semester;
-    float scores[QUIZZES + ASSIGNMENTS + 1]; // Last index for midterm
+    float scores[MAX_QUIZZES + MAX_ASSIGNMENTS + 1]; // Last index for midterm
 } Student;
 
 void inputStudentDetails(Student *student) {
     printf("Enter Student Name: ");
     scanf(" %[^\n]", student->name);
+    
     printf("Enter Student ID: ");
     scanf("%d", &student->id);
+    
     printf("Enter Branch: ");
     scanf(" %[^\n]", student->branch);
-    printf("Enter Semester: ");
+    
+    printf("Enter Semester (1-8): ");
     scanf("%d", &student->semester);
 }
 
@@ -27,29 +30,37 @@ void calculateGrade(Student *student) {
     float total = 0;
     int quizzes, assignments;
 
-    printf("Enter number of subjects: ");
+    printf("Enter number of quizzes (up to %d): ", MAX_QUIZZES);
     scanf("%d", &quizzes);
-    
+    if (quizzes > MAX_QUIZZES) {
+        printf("Number of quizzes cannot exceed %d.\n", MAX_QUIZZES);
+        return;
+    }
+
     for (int i = 0; i < quizzes; i++) {
         printf("Enter scores for Quiz %d: ", i + 1);
         scanf("%f", &student->scores[i]);
         total += student->scores[i];
     }
 
-    printf("Enter number of assignments: ");
+    printf("Enter number of assignments (up to %d): ", MAX_ASSIGNMENTS);
     scanf("%d", &assignments);
-    
+    if (assignments > MAX_ASSIGNMENTS) {
+        printf("Number of assignments cannot exceed %d.\n", MAX_ASSIGNMENTS);
+        return;
+    }
+
     for (int i = 0; i < assignments; i++) {
         printf("Enter scores for Assignment %d: ", i + 1);
         scanf("%f", &student->scores[quizzes + i]);
         total += student->scores[quizzes + i];
     }
 
-    printf("Enter Mid-term Marks: ");
+    printf("Enter Mid-term Marks (out of 30): ");
     scanf("%f", &student->scores[quizzes + assignments]);
     total += student->scores[quizzes + assignments];
 
-    float percentage = (total / 70) * 100;
+    float percentage = (total / 70) * 100; // Total of quizzes, assignments, and mid-term
 
     char grade;
     if (percentage >= 70) grade = 'A';
